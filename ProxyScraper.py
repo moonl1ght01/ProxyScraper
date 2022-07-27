@@ -6,19 +6,19 @@ from os import system
 from os import mkdir
 
 try:
-    from colorama import Fore
+    from colorama import Fore, init
     import requests
 except ImportError:
     system('python -m pip install colorama, requests')  
-
+init(autoreset=True)
 class App:    
     def __init__(self) -> None:
         try: 
-            print("Create PATH for Proxy List...")
+            print(f"{Fore(Fore.BLUE)}Create PATH for Proxy List...")
             mkdir("ProxyLists")
-            print("PATH CREATED SUCCESSFULLY!")
+            print(f"{Fore(Fore.GREEN)}PATH CREATED SUCCESSFULLY!")
         except FileExistsError:
-            print("PATH ALTREDY EXISTS")
+            print(f"{Fore(Fore.GREEN)}PATH ALTREDY EXISTS")
         
         
         self.payload={}
@@ -28,7 +28,8 @@ class App:
         self.URLSOCKS4: str = "https://api.proxyscrape.com/v2/?request=displayproxies&proxytype=socks4&timeout=10000&country=all&ssl=all&anonymity=all"
         self.URLSOCKS5: str = "https://api.proxyscrape.com/v2/?request=displayproxies&proxytype=socks5&timeout=10000&country=all&ssl=all&anonymity=all"
         
-        print(self.GET_HTTPPROXY())
+        print(self.GET_PROXYLIST())
+        print(f"{Fore(Fore.GREEN)} PROXY LIST CREATED SUCCESSFULLY!")
            
     def GET_HTTPPROXY(self) -> str:
         response = requests.request("GET", self.URLHTTP, headers=self.payload, data=self.payload)
