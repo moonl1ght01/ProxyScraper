@@ -36,7 +36,7 @@ class App:
         print(f"{Fore.GREEN} PROXY LIST CREATED SUCCESSFULLY! ( AND SAVED IN FILE )")
         
         print(f"{Fore.LIGHTMAGENTA_EX} HTTP PROXY:\n {self.GET_HTTPPROXY()}")
-        print(f"{Fore.LIGHTYELLOW_EX} SOCKS4/5 PROXY:\n {self.GET_SOCKS4PROXY()}")
+        print(f"{Fore.LIGHTYELLOW_EX} SOCKS4/5 PROXY:\n {self.GET_SOCKS5PROXY()}")
         
         print(f"""
 {Fore.LIGHTMAGENTA_EX}COLOR HTTP PROXY {Fore.LIGHTMAGENTA_EX}
