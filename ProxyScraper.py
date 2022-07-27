@@ -18,6 +18,7 @@ class App:
         try: 
             print(f"{Fore.BLUE}Create PATH for Proxy List...")
             mkdir("ProxyLists")
+            mkdir(r"ProxyLists/SortedProxyLists")
             print(f"{Fore.GREEN}PATH CREATED SUCCESSFULLY!")
         except FileExistsError:
             print(f"{Fore.GREEN}PATH ALTREDY EXISTS")
@@ -61,10 +62,21 @@ class App:
         list: list = []
         list.append(f"{Fore.LIGHTMAGENTA_EX}HTTP PROXY:\n" + self.GET_HTTPPROXY() + "\n")
         list.append(f"{Fore.LIGHTYELLOW_EX}SOCKS4 PROXY:\n" + self.GET_SOCKS5PROXY() + "\n")
-        list.append(f"{Fore.LIGHTCYAN_EX}SOKS5 PROXY:\n" + self.GET_SOCKS5PROXY() + "\n")
+        list.append(f"{Fore.LIGHTCYAN_EX}SOCKS5 PROXY:\n" + self.GET_SOCKS5PROXY() + "\n")
         
-        with open("ProxyLists/ProxyList.txt", "w") as file:
-            file.writelines(list)    
+        with open("ProxyLists/ProxyList.txt", "a") as file:
+            file.writelines(list)
+            file.close()
+
+        with open(r"ProxyLists/SortedProxyLists/HTTP_PROXY", "a") as file:
+            file.write(self.GET_HTTPPROXY())
+            file.close()
+        with open(r"ProxyLists/SortedProxyLists/SOCKS4_PROXY", "a") as file:
+            file.write(self.GET_SOCKS4PROXY())
+            file.close()
+        with open(r"ProxyLists/SortedProxyLists/SOCKS5_PROXY", "a") as file:
+            file.write(self.GET_SOCKS5PROXY())
+            file.close()
         return list
     
 if __name__ == '__main__':
