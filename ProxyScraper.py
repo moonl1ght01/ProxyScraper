@@ -27,7 +27,7 @@ class App:
         self.payload={}
         self.headers = {}     
         
-        self.URLHTTP: str = "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=all&timeout=10000&country=all&ssl=all&anonymity=all"
+        self.URLHTTP: str = "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
         self.URLSOCKS4: str = "https://api.proxyscrape.com/v2/?request=displayproxies&proxytype=socks4&timeout=10000&country=all&ssl=all&anonymity=all"
         self.URLSOCKS5: str = "https://api.proxyscrape.com/v2/?request=displayproxies&proxytype=socks5&timeout=10000&country=all&ssl=all&anonymity=all"
         
@@ -39,9 +39,9 @@ class App:
         print(f"{Fore.LIGHTCYAN_EX} SOKS5 PROXY:\n {self.GET_SOCKS5PROXY()}")
         
         print(f"""
-{Fore.LIGHTMAGENTA_EX}COLOR HTTP PROXY: {Fore.LIGHTMAGENTA_EX}
-{Fore.LIGHTYELLOW_EX}COLOR SOCKS4 PROXY: {Fore.LIGHTYELLOW_EX}
-{Fore.LIGHTCYAN_EX}COLOR SOCKS5 PROXY: {Fore.LIGHTCYAN_EX}
+{Fore.LIGHTMAGENTA_EX}COLOR HTTP PROXY {Fore.LIGHTMAGENTA_EX}
+{Fore.LIGHTYELLOW_EX}COLOR SOCKS4 PROXY {Fore.LIGHTYELLOW_EX}
+{Fore.LIGHTCYAN_EX}COLOR SOCKS5 PROXY {Fore.LIGHTCYAN_EX}
 """)
         print(f"{Fore.LIGHTGREEN_EX}ProxyScraper v{__VERSION__} by {__USER__}")
 
