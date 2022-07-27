@@ -54,8 +54,8 @@ class App:
     
     def GET_PROXYLIST(self) -> list:
         list: list = []
-        list.append(f"{Fore.LIGHTMAGENTA_EX}HTTP PROXY:\n" + self.GET_HTTPPROXY() + "\n")
-        list.append(f"{Fore.LIGHTYELLOW_EX}SOCKS4/5 PROXY:\n" + self.GET_SOCKS5PROXY() + "\n")
+        list.append(self.GET_HTTPPROXY())
+        list.append(self.GET_SOCKS5PROXY())
         
         with open("ProxyLists/ProxyList.txt", "a") as file:
             file.writelines(list)
