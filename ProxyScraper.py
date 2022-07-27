@@ -57,15 +57,15 @@ class App:
         list.append(self.GET_HTTPPROXY())
         list.append(self.GET_SOCKS5PROXY())
         
-        with open("ProxyLists/ProxyList.txt", "a") as file:
+        with open("ProxyLists/ProxyList.txt", "w") as file:
             file.writelines(list)
             file.close()
 
-        with open(r"ProxyLists/SortedProxyLists/HTTP_PROXY.txt", "a") as file:
+        with open(r"ProxyLists/SortedProxyLists/HTTP_PROXY.txt", "w") as file:
             file.write(self.GET_HTTPPROXY())
             file.close()
             
-        with open(r"ProxyLists/SortedProxyLists/SOCKS4-5_PROXY.txt", "a") as file:
+        with open(r"ProxyLists/SortedProxyLists/SOCKS4-5_PROXY.txt", "w") as file:
             file.write(self.GET_SOCKS5PROXY())
             file.close()
         return list
