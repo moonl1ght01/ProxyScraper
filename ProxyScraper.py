@@ -1,21 +1,26 @@
-__USER__: str  = "moonl1ght01 AKA Py-Moon"
-__VERSION__: str = "0.5"
+__VERSION__: str = "1.0.0"
 __DATE__: str = "27-07-2022"
+__AUTHOR__: str = "Py-Moon"
 
-from os import system
+from pkg_resources import working_set  # noqa
+from typing import Set  # noqa
+from subprocess import DEVNULL, check_call  # noqa
+
+required: Set[str] = {'requests', 'colorama'}  # noqa
+installed: Set[str] = {pkg.key for pkg in working_set}  # noqa
+missing: Set[str] = required - installed  # noqa
+if missing:  # noqa
+    check_call(['python', '-m', 'pip', 'install', *missing], stdout=DEVNULL)  # noqa
+
 from os import mkdir
+import requests  
 
-try:
-    from colorama import Fore, init
-    import requests
-except ImportError:
-    system('python -m pip install colorama, requests')  
-    
+from colorama import Fore, init
 init(autoreset=True)
 
 class App:    
     def __init__(self) -> None:
-        print(f"{Fore.RED}ProxyScraper v{__VERSION__} by {__USER__}")
+        print(f"{Fore.RED}ProxyScraper v{__VERSION__} by {__AUTHOR__}")
         
         try: 
             print(f"{Fore.BLUE}Create PATH for Proxy List...")
@@ -42,7 +47,7 @@ class App:
 {Fore.LIGHTMAGENTA_EX}COLOR HTTP PROXY {Fore.LIGHTMAGENTA_EX}
 {Fore.LIGHTYELLOW_EX}COLOR SOCKS 4/5 PROXY {Fore.LIGHTYELLOW_EX}
 """)
-        print(f"{Fore.RED}ProxyScraper v{__VERSION__} by {__USER__}")
+        print(f"{Fore.RED}ProxyScraper v{__VERSION__} by {__AUTHOR__}")
 
     def GET_HTTPPROXY(self) -> str:
         response = requests.request("GET", self.URLHTTP, headers=self.payload, data=self.payload)
