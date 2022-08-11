@@ -1,5 +1,5 @@
-__VERSION__: str = "1.0.1"
-__DATE__: str = "27-07-2022"
+__VERSION__: str = "1.0.2"
+__DATE__: str = "11-08-2022"
 __AUTHOR__: str = "Py-Moon"
 
 from pkg_resources import working_set  # noqa
@@ -13,7 +13,8 @@ if missing:  # noqa
     check_call(['python', '-m', 'pip', 'install', *missing], stdout=DEVNULL)  # noqa
 
 from os import mkdir
-import requests  
+from requests import request
+
 
 from colorama import Fore, init
 init(autoreset=True)
@@ -31,7 +32,7 @@ class App:
             print(f"{Fore.GREEN}PATH ALTREDY EXISTS")
         
         
-        self.payload={}
+        self.payload = {}
         self.headers = {}     
         
         self.URLHTTP: str = "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all"
@@ -50,19 +51,17 @@ class App:
         print(f"{Fore.RED}ProxyScraper v{__VERSION__} by {__AUTHOR__}")
 
     def GET_HTTPPROXY(self) -> str:
-        response = requests.request("GET", self.URLHTTP, headers=self.payload, data=self.payload)
-        return response.text   
+        return request("GET", self.URLHTTP, headers=self.headers, data=self.payload).text   
     
     def GET_SOCKS5PROXY(self) -> str:
-        response = requests.request("GET", self.URLSOCKS5, headers=self.payload, data=self.payload)
-        return response.text
+        return request("GET", self.URLSOCKS5, headers=self.headers, data=self.payload).text
     
     def GET_PROXYLIST(self) -> list:
         list: list = []
         list.append(self.GET_HTTPPROXY())
         list.append(self.GET_SOCKS5PROXY())
         
-        with open("ProxyLists/ProxyList.txt", "w") as file:
+        with open(r"ProxyLists/ProxyList.txt", "w") as file:
             file.writelines(list)
 
         with open(r"ProxyLists/SortedProxyLists/HTTP_PROXY.txt", "w") as file:
