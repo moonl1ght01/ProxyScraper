@@ -64,15 +64,13 @@ class App:
         
         with open("ProxyLists/ProxyList.txt", "w") as file:
             file.writelines(list)
-            file.close()
 
         with open(r"ProxyLists/SortedProxyLists/HTTP_PROXY.txt", "w") as file:
             file.write(self.GET_HTTPPROXY())
-            file.close()
             
         with open(r"ProxyLists/SortedProxyLists/SOCKS4-5_PROXY.txt", "w") as file:
             file.write(self.GET_SOCKS5PROXY())
-            file.close()
+
         return list
     
 if __name__ == '__main__':
