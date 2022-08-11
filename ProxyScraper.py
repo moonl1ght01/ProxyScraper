@@ -1,4 +1,4 @@
-__VERSION__: str = "1.0.0"
+__VERSION__: str = "1.0.1"
 __DATE__: str = "27-07-2022"
 __AUTHOR__: str = "Py-Moon"
 
